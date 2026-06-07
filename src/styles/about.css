@@ -1,0 +1,41 @@
+.page--about > .page__main {
+  padding-top: calc(var(--header-h) + var(--layout-gap));
+  padding-bottom: var(--layout-gap);
+  justify-content: center;
+  align-items: center;
+}
+
+.page--about .page-overlay {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.page--about .content-container {
+  gap: var(--layout-gap);
+  justify-content: center;
+  align-items: stretch;
+}
+
+.page--about .hero-text {
+  width: 100%;
+}
+
+.page--about .hero-text .prose,
+.page--about .content-container .prose {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  text-align: left;
+}
+
+body.loading-active.page-about .site-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+@media (max-width: 768px) {
+  .page--about .hero-text .prose,
+  .page--about .content-container .prose {
+    text-align: center;
+  }
+}

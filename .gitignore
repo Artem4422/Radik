@@ -1,0 +1,14 @@
+node_modules
+dist
+.DS_Store
+*.local
+tsconfig.tsbuildinfo
+screenshot-*.png
+
+# Архив и исходники медиа (не нужны на хостинге)
+СТАРЫЙ САЙТ/
+MEDIA/
+
+# Крупные файлы (>100 MB) — залить на хостинг отдельно (FTP/панель)
+public/uploads/videos/
+public/uploads/pdf/

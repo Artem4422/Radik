@@ -1,0 +1,47 @@
+:root {
+  --bg-color: #000000;
+  --accent-red: #ff0000;
+  --text-white: #ffffff;
+  --text-gray: #828282;
+  --transition-speed: 0.6s;
+
+  --side-pad: 16px;
+  --header-h: 64px;
+  --footer-pad: 10px;
+  --layout-gap: 20px;
+  --content-width: calc(100vw - 2 * var(--side-pad));
+  --prose-width: 100%;
+  --block-gap: clamp(20px, 4.5vh, 36px);
+  --grid-gap: 8px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --side-pad: clamp(20px, 3vw, 48px);
+    --content-width: min(2400px, 66vw);
+    --prose-width: min(1100px, 100%);
+    --block-gap: clamp(28px, 4.5vh, 56px);
+    --grid-gap: clamp(10px, 1.2vw, 18px);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-h: 49px;
+  }
+}
+
+/* Короткие экраны — чуть плотнее ритм LAYOUT-20 */
+@media (max-height: 920px) {
+  :root {
+    --layout-gap: 16px;
+    --block-gap: clamp(16px, 3vh, 32px);
+  }
+}
+
+@media (max-height: 820px) and (max-width: 768px) {
+  :root {
+    --layout-gap: 14px;
+    --footer-pad: 8px;
+  }
+}

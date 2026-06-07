@@ -1,0 +1,134 @@
+/* Стили страницы «Шоу» — по style-show.css + style-system.css старого сайта */
+
+body.page-show .page-bg--photo,
+.page--show .page-bg--photo {
+  background-position: 60% 25%;
+}
+
+@media (min-width: 1025px) {
+  body.page-show .page-bg--photo,
+  .page--show .page-bg--photo {
+    background-position: 50% 25%;
+  }
+}
+
+@media (min-width: 1800px) {
+  body.page-show .page-bg--photo,
+  .page--show .page-bg--photo {
+    background-position: 50% 20% !important;
+  }
+
+  body.page-show .page__main,
+  .page--show .page__main {
+    padding-top: calc(var(--header-h) + var(--layout-gap)) !important;
+  }
+
+  body.page-show .content-container .prose,
+  body.page-show .content-container p,
+  .page--show .content-container .prose,
+  .page--show .content-container p {
+    font-size: 27px;
+    line-height: 1.6;
+  }
+}
+
+body.page-show .content-container,
+.page--show .content-container {
+  gap: var(--layout-gap) !important;
+  align-items: stretch !important;
+}
+
+body.page-show .content-container > *,
+.page--show .content-container > * {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Кнопки «Купить билет» и «Афиша» — крупные, как на старом сайте */
+body.page-show .content-container .btn-primary,
+body.page-show .content-container .btn-glass,
+.page--show .content-container .btn-primary,
+.page--show .content-container .btn-glass {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 0;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 1;
+  letter-spacing: normal;
+  margin: 0 !important;
+}
+
+@media (max-width: 768px) {
+  body.page-show .content-container .btn-primary,
+  body.page-show .content-container .btn-glass,
+  .page--show .content-container .btn-primary,
+  .page--show .content-container .btn-glass {
+    font-size: clamp(26px, 8vw, 48px);
+    padding: 8px 12px;
+  }
+}
+
+/* Обёртки кнопок — по центру */
+body.page-show .content-container > .animate-in:not(.apple-video-player),
+.page--show .content-container > .animate-in:not(.apple-video-player) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Текст шоу — на всю ширину контейнера */
+body.page-show .content-container .prose,
+body.page-show .content-container p,
+.page--show .content-container .prose,
+.page--show .content-container p {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  font-size: clamp(14px, 1.05vw + 6px, 22px);
+  line-height: 1.65;
+  font-weight: 400;
+  text-align: left;
+  hyphens: none;
+}
+
+@media (max-width: 768px) {
+  body.page-show .content-container .prose,
+  body.page-show .content-container p,
+  .page--show .content-container .prose,
+  .page--show .content-container p {
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  body.page-show .content-container,
+  .page--show .content-container {
+    gap: 14px !important;
+  }
+}
+
+@media (max-width: 768px) and (max-height: 1040px) {
+  body.page-show .page__main,
+  .page--show .page__main {
+    padding-bottom: 12px;
+  }
+}
+
+/* Видеоплеер: без лишних margin, равномерный gap с кнопками */
+body.page-show .apple-video-player,
+.page--show .apple-video-player {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+
+@media (max-width: 768px) {
+  body.page-show .apple-video-player,
+  .page--show .apple-video-player {
+    max-width: 100% !important;
+  }
+}

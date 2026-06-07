@@ -1,0 +1,77 @@
+.page--ticket .ticket-main {
+  justify-content: center;
+  align-items: center;
+}
+
+.ticket-container {
+  align-items: center;
+  text-align: center;
+}
+
+.ticket-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(8px, 1.5vh, 18px);
+  text-align: center;
+}
+
+.ticket-title {
+  font-size: clamp(28px, 5vw + 10px, 72px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.ticket-subtitle {
+  font-size: clamp(20px, 3.5vw + 6px, 52px);
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.page--ticket .contact-social-icons {
+  width: var(--content-width);
+  max-width: var(--content-width);
+  justify-content: center;
+  gap: clamp(12px, 3vw, 20px);
+}
+
+.ticket-widget-placeholder,
+.ticket-widget-frame {
+  width: 100%;
+  max-width: var(--content-width);
+  border-radius: 10px;
+}
+
+.ticket-widget-placeholder {
+  min-height: clamp(150px, 20vh, 240px);
+  border: 1px dashed rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.65);
+  font-size: clamp(12px, 1.1vw + 7px, 20px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 2vw, 24px);
+}
+
+.ticket-widget-frame {
+  min-height: clamp(320px, 50vh, 620px);
+  border: 0;
+  background: #000;
+}
+
+@media (max-width: 768px) {
+  .page--ticket .contact-social-icons {
+    width: 100%;
+    max-width: 100%;
+  }
+}
