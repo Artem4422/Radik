@@ -86,6 +86,13 @@
   .prose {
     text-align: center;
   }
+
+  .contact-social-icons--spread {
+    width: var(--content-width);
+    max-width: var(--content-width);
+    justify-content: center;
+    gap: clamp(12px, 4vw, 18px);
+  }
 }
 
 .page-bg {
@@ -145,7 +152,7 @@
 .page--event .site-footer,
 .page--ticket .site-footer,
 .page--partners .site-footer {
-  margin-top: 0;
+  margin-top: auto;
 }
 
 .footer-text-stack {

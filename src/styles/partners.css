@@ -106,10 +106,10 @@ body.page-partners .page--partners {
 
 .partners-list {
   display: grid !important;
-  grid-template-columns: max-content minmax(0, max-content) !important;
+  grid-template-columns: max-content minmax(0, 1fr) !important;
   column-gap: clamp(20px, 3vw, 28px) !important;
   row-gap: var(--layout-gap) !important;
-  width: max-content !important;
+  width: min(100%, 1200px) !important;
   max-width: 100% !important;
   margin: 0 auto !important;
   justify-content: center !important;
@@ -141,7 +141,7 @@ body.page-partners .page--partners {
 .page--partners .partner-btn {
   width: auto !important;
   padding: 10px !important;
-  font-size: 48px !important;
+  font-size: clamp(20px, 2.1vw, 38px) !important;
   font-weight: 500 !important;
   line-height: 1 !important;
   letter-spacing: normal;
@@ -174,7 +174,7 @@ body.page-partners .page--partners {
   flex: 0 0 auto !important;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 

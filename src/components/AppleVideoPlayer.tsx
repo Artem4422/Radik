@@ -19,6 +19,7 @@ export function AppleVideoPlayer({ src, poster, className = "" }: AppleVideoPlay
   const [revealed, setRevealed] = useState(false);
   const [progress, setProgress] = useState(0);
   const [time, setTime] = useState("0:00");
+  const [durationText, setDurationText] = useState("0:00");
 
   useEffect(() => {
     const timer = window.setTimeout(() => setRevealed(true), 400);
@@ -41,14 +42,20 @@ export function AppleVideoPlayer({ src, poster, className = "" }: AppleVideoPlay
       setProgress((video.currentTime / video.duration) * 100);
       setTime(formatTime(video.currentTime));
     };
+    const onLoadedMetadata = () => {
+      setDurationText(formatTime(video.duration || 0));
+      setTime(formatTime(video.currentTime || 0));
+    };
 
     video.addEventListener("play", onPlay);
     video.addEventListener("pause", onPause);
     video.addEventListener("timeupdate", onTimeUpdate);
+    video.addEventListener("loadedmetadata", onLoadedMetadata);
     return () => {
       video.removeEventListener("play", onPlay);
       video.removeEventListener("pause", onPause);
       video.removeEventListener("timeupdate", onTimeUpdate);
+      video.removeEventListener("loadedmetadata", onLoadedMetadata);
     };
   }, []);
 
@@ -96,6 +103,8 @@ export function AppleVideoPlayer({ src, poster, className = "" }: AppleVideoPlay
         playsInline
         poster={poster}
         className={playing ? "is-playing" : "is-idle"}
+        controls
+        controlsList="nodownload noplaybackrate"
       >
         <source src={src} type="video/mp4" />
       </video>
@@ -107,7 +116,7 @@ export function AppleVideoPlayer({ src, poster, className = "" }: AppleVideoPlay
           <path d="M8 5v14l11-7z" />
         </svg>
       </button>
-      <div className="video-controls">
+      <div className="video-controls" aria-hidden={playing}>
         <button type="button" className="control-btn play-pause-btn" onClick={togglePlay} aria-label="Play/Pause">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
             {playing ? (
@@ -120,7 +129,9 @@ export function AppleVideoPlayer({ src, poster, className = "" }: AppleVideoPlay
         <div className="progress-container" onClick={seek} role="presentation">
           <div className="progress-bar" style={{ width: `${progress}%` }} />
         </div>
-        <span className="time-display">{time}</span>
+        <span className="time-display">
+          {time} / {durationText}
+        </span>
         <button type="button" className="control-btn fullscreen-btn" onClick={toggleFullscreen} aria-label="Fullscreen">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
             <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" />

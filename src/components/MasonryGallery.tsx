@@ -5,9 +5,14 @@ import { Lightbox } from "./Lightbox";
 type MasonryGalleryProps = {
   columns: GalleryImage[][];
   eagerCount?: number;
+  enableLightbox?: boolean;
 };
 
-export function MasonryGallery({ columns, eagerCount = 9 }: MasonryGalleryProps) {
+export function MasonryGallery({
+  columns,
+  eagerCount = 9,
+  enableLightbox = true,
+}: MasonryGalleryProps) {
   const flat = columns.flat();
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   let globalIndex = 0;
@@ -24,10 +29,10 @@ export function MasonryGallery({ columns, eagerCount = 9 }: MasonryGalleryProps)
                 <div
                   key={img.src}
                   className="grid-item"
-                  onClick={() => setLightboxIndex(idx)}
-                  onKeyDown={(e) => e.key === "Enter" && setLightboxIndex(idx)}
-                  role="button"
-                  tabIndex={0}
+                  onClick={() => enableLightbox && setLightboxIndex(idx)}
+                  onKeyDown={(e) => e.key === "Enter" && enableLightbox && setLightboxIndex(idx)}
+                  role={enableLightbox ? "button" : undefined}
+                  tabIndex={enableLightbox ? 0 : -1}
                 >
                   <img
                     src={img.src}
@@ -46,7 +51,7 @@ export function MasonryGallery({ columns, eagerCount = 9 }: MasonryGalleryProps)
           </div>
         ))}
       </div>
-      {lightboxIndex !== null && (
+      {enableLightbox && lightboxIndex !== null && (
         <Lightbox
           images={flat}
           index={lightboxIndex}

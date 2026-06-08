@@ -18,7 +18,7 @@
 @media (min-width: 768px) {
   :root {
     --side-pad: clamp(20px, 3vw, 48px);
-    --content-width: min(2400px, 66vw);
+    --content-width: min(1700px, 84vw);
     --prose-width: min(1100px, 100%);
     --block-gap: clamp(28px, 4.5vh, 56px);
     --grid-gap: clamp(10px, 1.2vw, 18px);

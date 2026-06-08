@@ -2,8 +2,6 @@ import { PageLayout } from "@/components/PageLayout";
 import { FooterStack } from "@/components/Footer";
 import { SocialIcons } from "@/components/SocialIcons";
 
-const TICKET_WIDGET_SRC = "";
-
 function TicketFooter() {
   return (
     <footer className="site-footer">
@@ -20,19 +18,6 @@ export function TicketPage() {
           <h1 className="ticket-title">ПРОДАЖА</h1>
           <p className="ticket-subtitle">ЕЩЕ НЕ ОТКРЫТА</p>
         </div>
-
-        {TICKET_WIDGET_SRC ? (
-          <iframe
-            title="Ticket widget"
-            className="ticket-widget-frame"
-            src={TICKET_WIDGET_SRC}
-            loading="lazy"
-          />
-        ) : (
-          <div className="ticket-widget-placeholder" role="status" aria-live="polite">
-            Виджет продажи билетов появится здесь.
-          </div>
-        )}
 
         <SocialIcons spread />
       </div>

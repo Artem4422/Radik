@@ -375,7 +375,15 @@
 
 .time-display {
   font-size: 12px;
-  min-width: 36px;
+  min-width: 88px;
+}
+
+.apple-video-player video::-webkit-media-controls {
+  opacity: 1;
+}
+
+.apple-video-player:not(.playing) video::-webkit-media-controls {
+  display: none !important;
 }
 
 /* Masonry gallery */
@@ -532,6 +540,15 @@ body.page-poster .masonry-column > .grid-item:last-child img {
     max-width: var(--content-width);
     justify-content: space-between;
     gap: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-social-icons--spread {
+    width: var(--content-width);
+    max-width: var(--content-width);
+    justify-content: center;
+    gap: clamp(12px, 4vw, 18px);
   }
 }
 
@@ -736,9 +753,17 @@ body.loading-active {
   display: flex;
 }
 
+.lightbox-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: min(92vw, 1280px);
+}
+
 .lightbox img {
-  max-width: 92vw;
-  max-height: 85vh;
+  max-width: 100%;
+  max-height: 82vh;
   object-fit: contain;
 }
 
@@ -756,6 +781,10 @@ body.loading-active {
 .lightbox-close {
   top: 12px;
   right: 12px;
+  z-index: 2;
+  font-size: clamp(40px, 3vw, 56px);
+  line-height: 1;
+  color: #fff;
 }
 
 .lightbox-prev {
@@ -771,12 +800,13 @@ body.loading-active {
 }
 
 .lightbox-caption {
-  position: absolute;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: static;
   color: var(--text-gray);
   font-size: 14px;
+  text-align: left;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 /* PDF modal */

@@ -16,7 +16,7 @@ export function PosterPage() {
   return (
     <PageLayout pageId="poster" footerSlot={<PosterFooter />}>
       <div className="content-container animate-in">
-        <MasonryGallery columns={posterColumns} eagerCount={9} />
+        <MasonryGallery columns={posterColumns} eagerCount={9} enableLightbox={false} />
         <div className="poster-social">
           <SocialIcons spread />
         </div>

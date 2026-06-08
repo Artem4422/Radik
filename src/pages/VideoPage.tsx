@@ -6,11 +6,11 @@ import { TranslatedHtml } from "@/i18n/LanguageContext";
 const videos = [
   {
     src: "/uploads/videos/regular/JG_PROMO_1.mp4",
-    poster: "/uploads/img-webp/poster2.png",
+    poster: "/uploads/img-webp/poster1.png",
   },
   {
     src: "/uploads/videos/regular/promo-juggler-2019.mp4",
-    poster: "/uploads/img-webp/poster1.png",
+    poster: "/uploads/img-webp/poster2.png",
   },
   {
     src: "/uploads/videos/regular/0323.mp4",

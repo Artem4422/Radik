@@ -43,32 +43,6 @@
   gap: clamp(12px, 3vw, 20px);
 }
 
-.ticket-widget-placeholder,
-.ticket-widget-frame {
-  width: 100%;
-  max-width: var(--content-width);
-  border-radius: 10px;
-}
-
-.ticket-widget-placeholder {
-  min-height: clamp(150px, 20vh, 240px);
-  border: 1px dashed rgba(255, 255, 255, 0.35);
-  color: rgba(255, 255, 255, 0.65);
-  font-size: clamp(12px, 1.1vw + 7px, 20px);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(16px, 2vw, 24px);
-}
-
-.ticket-widget-frame {
-  min-height: clamp(320px, 50vh, 620px);
-  border: 0;
-  background: #000;
-}
-
 @media (max-width: 768px) {
   .page--ticket .contact-social-icons {
     width: 100%;

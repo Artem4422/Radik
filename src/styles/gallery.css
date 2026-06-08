@@ -141,6 +141,7 @@ body.page-gallery footer.gallery-footer .footer-text-stack,
   .page--gallery .masonry-column {
     gap: 8px;
   }
+
 }
 
 @media (min-width: 768px) {

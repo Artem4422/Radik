@@ -85,7 +85,18 @@ export type PageId =
   | "ticket";
 
 export function getBrowserLang(): Lang {
-  const browserLang = navigator.language || (navigator as Navigator & { userLanguage?: string }).userLanguage;
-  if (browserLang?.toLowerCase().includes("ru")) return "ru";
+  const nav = navigator as Navigator & { userLanguage?: string; languages?: readonly string[] };
+  const localePool = [navigator.language, nav.userLanguage, ...(nav.languages ?? [])]
+    .filter(Boolean)
+    .map((value) => String(value).toLowerCase());
+
+  const isRussianLocale = localePool.some((locale) => locale.startsWith("ru") || locale.includes("-ru"));
+  const regionPool = localePool
+    .map((locale) => locale.split("-")[1] ?? "")
+    .filter(Boolean);
+
+  const isBelarusOrKazakhstan = regionPool.some((region) => region === "by" || region === "kz");
+
+  if (isRussianLocale && !isBelarusOrKazakhstan) return "ru";
   return "en";
 }

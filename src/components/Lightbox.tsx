@@ -50,7 +50,7 @@ export function Lightbox({ images, index, onClose, onChange }: LightboxProps) {
       </button>
       <div className="lightbox-content">
         <img src={image.src} alt={image.alt} />
-        <div className="lightbox-caption">{image.alt}</div>
+        <p className="lightbox-caption">{image.alt}</p>
       </div>
     </div>
   );
