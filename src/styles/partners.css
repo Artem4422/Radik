@@ -109,7 +109,7 @@ body.page-partners .page--partners {
   grid-template-columns: max-content minmax(0, 1fr) !important;
   column-gap: clamp(20px, 3vw, 28px) !important;
   row-gap: var(--layout-gap) !important;
-  width: min(100%, 1200px) !important;
+  width: 100% !important;
   max-width: 100% !important;
   margin: 0 auto !important;
   justify-content: center !important;
@@ -173,9 +173,6 @@ body.page-partners .page--partners {
   margin: 0 !important;
   flex: 0 0 auto !important;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .page--partners .site-footer {
@@ -207,10 +204,6 @@ body.page-partners .page--partners {
   }
 
   .partners-list-wrapper {
-    justify-content: center !important;
-  }
-
-  .partners-social {
     justify-content: center !important;
   }
 

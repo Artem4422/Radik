@@ -37,15 +37,13 @@
 }
 
 .page--ticket .contact-social-icons {
-  width: var(--content-width);
-  max-width: var(--content-width);
-  justify-content: center;
-  gap: clamp(12px, 3vw, 20px);
+  width: 100%;
+  max-width: 100%;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 769px) {
   .page--ticket .contact-social-icons {
-    width: 100%;
-    max-width: 100%;
+    width: var(--content-width);
+    max-width: var(--content-width);
   }
 }

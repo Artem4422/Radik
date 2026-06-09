@@ -20,6 +20,7 @@ export function AppleVideoPlayer({ src, poster, className = "" }: AppleVideoPlay
   const [progress, setProgress] = useState(0);
   const [time, setTime] = useState("0:00");
   const [durationText, setDurationText] = useState("0:00");
+  const [muted, setMuted] = useState(false);
 
   useEffect(() => {
     const timer = window.setTimeout(() => setRevealed(true), 400);
@@ -46,16 +47,19 @@ export function AppleVideoPlayer({ src, poster, className = "" }: AppleVideoPlay
       setDurationText(formatTime(video.duration || 0));
       setTime(formatTime(video.currentTime || 0));
     };
+    const onVolumeChange = () => setMuted(video.muted || video.volume === 0);
 
     video.addEventListener("play", onPlay);
     video.addEventListener("pause", onPause);
     video.addEventListener("timeupdate", onTimeUpdate);
     video.addEventListener("loadedmetadata", onLoadedMetadata);
+    video.addEventListener("volumechange", onVolumeChange);
     return () => {
       video.removeEventListener("play", onPlay);
       video.removeEventListener("pause", onPause);
       video.removeEventListener("timeupdate", onTimeUpdate);
       video.removeEventListener("loadedmetadata", onLoadedMetadata);
+      video.removeEventListener("volumechange", onVolumeChange);
     };
   }, []);
 
@@ -64,6 +68,12 @@ export function AppleVideoPlayer({ src, poster, className = "" }: AppleVideoPlay
     if (!video) return;
     if (video.paused) void video.play().catch(() => undefined);
     else video.pause();
+  };
+
+  const handlePlayerClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    if (target.closest(".video-controls") || target.closest(".center-play-btn")) return;
+    togglePlay();
   };
 
   const seek = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -75,27 +85,20 @@ export function AppleVideoPlayer({ src, poster, className = "" }: AppleVideoPlay
     video.currentTime = pos * video.duration;
   };
 
-  const toggleFullscreen = () => {
-    const player = playerRef.current;
+  const toggleMute = () => {
     const video = videoRef.current;
-    if (!player || !video) return;
-    const fs = document.fullscreenElement;
-    if (!fs) {
-      const v = video as HTMLVideoElement & { webkitEnterFullscreen?: () => void };
-      if (v.webkitEnterFullscreen) {
-        v.webkitEnterFullscreen();
-      } else {
-        void player.requestFullscreen?.();
-      }
-    } else {
-      void document.exitFullscreen?.();
-    }
+    if (!video) return;
+    video.muted = !video.muted;
+    setMuted(video.muted);
   };
+
+  const timeLabel = `${time} / ${durationText}`;
 
   return (
     <div
       ref={playerRef}
       className={`apple-video-player animate-in${revealed ? " reveal" : ""}${playing ? " playing" : ""} ${className}`.trim()}
+      onClick={handlePlayerClick}
     >
       <video
         ref={videoRef}
@@ -103,8 +106,6 @@ export function AppleVideoPlayer({ src, poster, className = "" }: AppleVideoPlay
         playsInline
         poster={poster}
         className={playing ? "is-playing" : "is-idle"}
-        controls
-        controlsList="nodownload noplaybackrate"
       >
         <source src={src} type="video/mp4" />
       </video>
@@ -112,29 +113,43 @@ export function AppleVideoPlayer({ src, poster, className = "" }: AppleVideoPlay
         <img src={poster} alt="" className="video-poster" aria-hidden draggable={false} />
       )}
       <button type="button" className="center-play-btn" onClick={togglePlay} aria-label="Play">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="white" aria-hidden>
           <path d="M8 5v14l11-7z" />
         </svg>
       </button>
-      <div className="video-controls" aria-hidden={playing}>
+      <div className="video-controls" onClick={(e) => e.stopPropagation()}>
         <button type="button" className="control-btn play-pause-btn" onClick={togglePlay} aria-label="Play/Pause">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
             {playing ? (
-              <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+              <>
+                <rect x="6" y="5" width="4" height="14" rx="0.5" />
+                <rect x="14" y="5" width="4" height="14" rx="0.5" />
+              </>
             ) : (
               <path d="M8 5v14l11-7z" />
             )}
           </svg>
         </button>
+        <span className="time-display time-display--primary">{timeLabel}</span>
         <div className="progress-container" onClick={seek} role="presentation">
           <div className="progress-bar" style={{ width: `${progress}%` }} />
         </div>
-        <span className="time-display">
-          {time} / {durationText}
-        </span>
-        <button type="button" className="control-btn fullscreen-btn" onClick={toggleFullscreen} aria-label="Fullscreen">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-            <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" />
+        <span className="time-display time-display--secondary">{timeLabel}</span>
+        <button type="button" className="control-btn volume-btn" onClick={toggleMute} aria-label={muted ? "Включить звук" : "Выключить звук"}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            {muted ? (
+              <>
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none" />
+                <line x1="23" y1="9" x2="17" y2="15" />
+                <line x1="17" y1="9" x2="23" y2="15" />
+              </>
+            ) : (
+              <>
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none" />
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+              </>
+            )}
           </svg>
         </button>
       </div>

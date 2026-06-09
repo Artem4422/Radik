@@ -282,14 +282,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .apple-video-player video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
-  cursor: pointer;
+  pointer-events: none;
+  background: #000;
 }
 
 .apple-video-player video.is-idle {
@@ -301,9 +303,10 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   pointer-events: none;
   z-index: 1;
+  background: #000;
 }
 
 .apple-video-player .center-play-btn {
@@ -325,64 +328,129 @@
 
 .apple-video-player .video-controls {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2;
+  left: 50%;
+  right: auto;
+  bottom: 14px;
+  z-index: 3;
+  width: calc(100% - 28px);
+  max-width: calc(100% - 28px);
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 12px;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    #f3f3f3 0%,
+    #d2d2d2 28%,
+    #a8a8a8 62%,
+    #868686 100%
+  );
+  border: 1px solid rgba(0, 0, 0, 0.42);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 2px 10px rgba(0, 0, 0, 0.35);
   opacity: 1;
-  transition: opacity 0.3s ease;
-}
-
-.apple-video-player.playing .video-controls {
-  opacity: 0;
-  pointer-events: none;
-}
-
-@media (hover: hover) {
-  .apple-video-player.playing:hover .video-controls {
-    opacity: 1;
-    pointer-events: auto;
-  }
+  pointer-events: auto;
 }
 
 .progress-container {
   flex: 1;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.25);
-  border-radius: 2px;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.28);
+  border-radius: 999px;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .progress-bar {
   height: 100%;
   width: 0;
   background: var(--accent-red);
-  border-radius: 2px;
+  border-radius: 999px;
 }
 
-.control-btn {
+.apple-video-player .control-btn {
   background: transparent;
   border: none;
-  padding: 4px;
+  padding: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
 }
 
-.time-display {
-  font-size: 12px;
-  min-width: 88px;
+.apple-video-player .play-pause-btn {
+  width: 18px;
+  height: 18px;
+}
+
+.apple-video-player .volume-btn {
+  width: 20px;
+  height: 20px;
+}
+
+.apple-video-player .time-display {
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.apple-video-player .time-display--primary {
+  color: var(--accent-red);
+  min-width: 0;
+}
+
+.apple-video-player .time-display--secondary {
+  color: #fff;
+  font-size: 10px;
+  font-weight: 500;
+  opacity: 0.95;
+  min-width: 0;
+}
+
+@media (max-width: 520px) {
+  .apple-video-player .video-controls {
+    width: calc(100% - 16px);
+    max-width: calc(100% - 16px);
+    bottom: 10px;
+    gap: 7px;
+    padding: 6px 10px;
+  }
+
+  .apple-video-player .time-display {
+    font-size: 9px;
+  }
+
+  .apple-video-player .time-display--secondary {
+    font-size: 8px;
+  }
+
+  .apple-video-player .play-pause-btn {
+    width: 16px;
+    height: 16px;
+  }
+
+  .apple-video-player .volume-btn {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.apple-video-player video::-webkit-media-controls,
+.apple-video-player video::-webkit-media-controls-enclosure,
+.apple-video-player video::-webkit-media-controls-panel {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 .apple-video-player video::-webkit-media-controls {
-  opacity: 1;
-}
-
-.apple-video-player:not(.playing) video::-webkit-media-controls {
   display: none !important;
 }
 
@@ -526,29 +594,19 @@ body.page-poster .masonry-column > .grid-item:last-child img {
 
 .contact-social-icons {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: clamp(12px, 2vw, 28px);
-  width: fit-content;
+  gap: 0;
+  width: 100%;
   max-width: 100%;
   margin: 0 auto;
 }
 
 @media (min-width: 769px) {
+  .contact-social-icons,
   .contact-social-icons--spread {
     width: var(--content-width);
     max-width: var(--content-width);
-    justify-content: space-between;
-    gap: 0;
-  }
-}
-
-@media (max-width: 768px) {
-  .contact-social-icons--spread {
-    width: var(--content-width);
-    max-width: var(--content-width);
-    justify-content: center;
-    gap: clamp(12px, 4vw, 18px);
   }
 }
 
@@ -593,10 +651,6 @@ body.page-poster .masonry-column > .grid-item:last-child img {
 
   .contact-link {
     letter-spacing: 0;
-  }
-
-  .contact-social-icons {
-    gap: clamp(8px, 2.5vw, 14px);
   }
 
   .contact-social-icons a {
@@ -756,7 +810,7 @@ body.loading-active {
 .lightbox-content {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 10px;
   width: min(92vw, 1280px);
 }
@@ -779,9 +833,10 @@ body.loading-active {
 }
 
 .lightbox-close {
-  top: 12px;
-  right: 12px;
+  position: static;
+  align-self: flex-end;
   z-index: 2;
+  padding: 0;
   font-size: clamp(40px, 3vw, 56px);
   line-height: 1;
   color: #fff;
@@ -803,7 +858,7 @@ body.loading-active {
   position: static;
   color: var(--text-gray);
   font-size: 14px;
-  text-align: left;
+  text-align: right;
   width: 100%;
   padding: 0;
   margin: 0;
@@ -818,6 +873,12 @@ body.loading-active {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding:
+    calc(var(--header-h) + 8px)
+    max(12px, env(safe-area-inset-right, 0px))
+    max(12px, env(safe-area-inset-bottom, 0px))
+    max(12px, env(safe-area-inset-left, 0px));
+  box-sizing: border-box;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.35s ease;
@@ -840,9 +901,10 @@ body.loading-active {
 .pdf-modal-container {
   position: relative;
   z-index: 1;
-  width: clamp(320px, 90vw, 860px);
-  max-height: calc(92vh - 70px);
-  margin-top: 70px;
+  width: min(90vw, 860px);
+  max-width: 100%;
+  max-height: calc(100dvh - var(--header-h) - 24px);
+  margin-top: 0;
   background: #111111;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
@@ -862,13 +924,19 @@ body.loading-active {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 20px;
+  gap: 12px;
+  padding: 12px 16px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   flex-shrink: 0;
   background: #0a0a0a;
 }
 
 .pdf-modal-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.2em;
@@ -880,6 +948,7 @@ body.loading-active {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
 }
 
 .pdf-action-btn {
@@ -924,13 +993,13 @@ body.loading-active {
 }
 
 .pdf-modal-body {
-  flex: 1;
+  flex: 1 1 auto;
+  min-height: 0;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   background: #1a1a1a;
-  min-height: 200px;
-  padding: 20px;
+  padding: 12px;
   box-sizing: border-box;
 }
 
@@ -987,17 +1056,24 @@ body.loading-active {
 }
 
 .pdf-canvas-container {
-  flex: 1;
+  flex: 1 1 auto;
+  min-height: 0;
   width: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0;
   box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
 }
 
 .pdf-canvas-container img {
-  width: 100% !important;
+  max-width: 100%;
+  max-height: min(100%, calc(100dvh - var(--header-h) - 180px));
+  width: auto !important;
   height: auto !important;
+  object-fit: contain;
   display: block;
   border-radius: 4px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
@@ -1050,16 +1126,39 @@ body.loading-active {
 }
 
 @media (max-width: 480px) {
+  .pdf-modal {
+    padding:
+      calc(var(--header-h) + 6px)
+      max(8px, env(safe-area-inset-right, 0px))
+      max(8px, env(safe-area-inset-bottom, 0px))
+      max(8px, env(safe-area-inset-left, 0px));
+  }
+
+  .pdf-modal-container {
+    width: 100%;
+    max-height: calc(100dvh - var(--header-h) - 16px);
+    border-radius: 10px;
+  }
+
   .pdf-modal-header {
-    padding: 12px 14px;
+    padding: 10px 12px;
+  }
+
+  .pdf-modal-title {
+    font-size: 11px;
+    letter-spacing: 0.12em;
   }
 
   .pdf-action-btn {
-    padding: 7px 12px;
-    font-size: 12px;
+    padding: 7px 10px;
+    font-size: 11px;
   }
 
   .pdf-modal-body {
-    padding: 12px;
+    padding: 8px;
+  }
+
+  .pdf-modal-footer {
+    padding: 10px 12px;
   }
 }

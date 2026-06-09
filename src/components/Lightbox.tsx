@@ -29,9 +29,6 @@ export function Lightbox({ images, index, onClose, onChange }: LightboxProps) {
 
   return (
     <div className="lightbox is-open" role="dialog" aria-modal>
-      <button type="button" className="lightbox-close" onClick={onClose} aria-label="Закрыть">
-        &times;
-      </button>
       <button
         type="button"
         className="lightbox-prev"
@@ -49,6 +46,9 @@ export function Lightbox({ images, index, onClose, onChange }: LightboxProps) {
         &#10095;
       </button>
       <div className="lightbox-content">
+        <button type="button" className="lightbox-close" onClick={onClose} aria-label="Закрыть">
+          &times;
+        </button>
         <img src={image.src} alt={image.alt} />
         <p className="lightbox-caption">{image.alt}</p>
       </div>

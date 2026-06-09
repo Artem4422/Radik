@@ -128,14 +128,10 @@ body.page-contact .page--contact {
 }
 
 .page--contact .contact-social-icons {
-  width: fit-content;
+  width: 100%;
   max-width: 100%;
   margin: 0 auto;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: clamp(12px, 2vw, 28px);
 }
 
 .page--contact .contact-social-icons a {
@@ -211,10 +207,6 @@ body.page-contact[data-lang="en"] .disclaimer-line:nth-child(2) {
   .page--contact .contact-row-nowrap {
     gap: 2px;
     width: 98%;
-  }
-
-  .page--contact .contact-social-icons {
-    gap: clamp(8px, 2.5vw, 14px);
   }
 
   .page--contact .contact-social-icons a {
