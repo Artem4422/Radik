@@ -682,10 +682,12 @@ body.page-poster .masonry-column > .grid-item:last-child img {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  align-self: center;
   gap: 0;
   width: var(--social-icons-width, 100%);
   max-width: var(--social-icons-width, 100%);
   margin: 0 auto;
+  flex-shrink: 0;
 }
 
 @media (min-width: 769px) {
@@ -879,14 +881,25 @@ body.loading-active {
 }
 
 /* Lightbox */
+body.lightbox-open {
+  overflow: hidden;
+  height: var(--lightbox-height, 100svh);
+  max-height: var(--lightbox-height, 100svh);
+  touch-action: none;
+}
+
 .lightbox {
   position: fixed;
   inset: 0;
   z-index: 2000;
+  height: var(--lightbox-height, 100svh);
+  max-height: var(--lightbox-height, 100svh);
   background: rgba(0, 0, 0, 0.92);
   display: none;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  touch-action: none;
 }
 
 .lightbox.is-open {
@@ -960,17 +973,17 @@ body.loading-active {
       calc(env(safe-area-inset-bottom, 0px) + 72px)
       max(12px, env(safe-area-inset-left, 0px));
     box-sizing: border-box;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
   }
 
   .lightbox-content {
     width: min(92vw, 100%);
-    max-height: calc(100svh - var(--header-h) - 96px);
+    max-height: calc(var(--lightbox-height, 100svh) - var(--header-h) - 96px);
+    overflow: hidden;
   }
 
   .lightbox img {
-    max-height: calc(100svh - var(--header-h) - 148px);
+    max-height: calc(var(--lightbox-height, 100svh) - var(--header-h) - 148px);
   }
 
   .lightbox-close {

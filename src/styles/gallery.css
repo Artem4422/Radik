@@ -59,8 +59,6 @@ body.page-gallery .masonry-collage,
 
 body.page-gallery footer.gallery-footer .footer-text-stack,
 .page--gallery footer.gallery-footer .footer-text-stack {
-  width: var(--content-width);
-  max-width: var(--content-width);
   margin: 0 auto;
 }
 

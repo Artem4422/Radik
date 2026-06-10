@@ -1,0 +1,29 @@
+/* Poster page — mobile viewport fits visible browser chrome */
+@media (max-width: 768px) {
+  body.page-poster,
+  body.page-poster #root,
+  body.page-poster .page--poster {
+    height: 100svh;
+    max-height: 100svh;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  body.page-poster .page--poster {
+    display: flex;
+    flex-direction: column;
+  }
+
+  body.page-poster .page--poster > .page__main {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+  }
+
+  body.page-poster .page--poster > .site-footer {
+    flex-shrink: 0;
+  }
+}
