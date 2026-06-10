@@ -128,8 +128,6 @@ body.page-contact .page--contact {
 }
 
 .page--contact .contact-social-icons {
-  width: 100%;
-  max-width: 100%;
   margin: 0 auto;
   padding: 0;
 }
@@ -233,12 +231,6 @@ body.page-contact[data-lang="en"] .disclaimer-line:nth-child(2) {
   .page--contact .disclaimer-line,
   .page--contact .footer-rights {
     white-space: normal;
-  }
-
-  .page--contact .footer-rights {
-    display: inline-block;
-    width: fit-content;
-    max-width: 100%;
   }
 }
 

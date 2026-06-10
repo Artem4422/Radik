@@ -36,14 +36,3 @@
   line-height: 1.2;
 }
 
-.page--ticket .contact-social-icons {
-  width: 100%;
-  max-width: 100%;
-}
-
-@media (min-width: 769px) {
-  .page--ticket .contact-social-icons {
-    width: var(--content-width);
-    max-width: var(--content-width);
-  }
-}

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 import type { PartnerPdf } from "@/data/partners";
 
@@ -146,7 +147,7 @@ export function PdfViewerModal({ doc, onClose }: PdfViewerModalProps) {
 
 
 
-  return (
+  return createPortal(
 
     <div className="pdf-modal active" role="dialog" aria-modal aria-label={doc.label}>
 
@@ -340,7 +341,9 @@ export function PdfViewerModal({ doc, onClose }: PdfViewerModalProps) {
 
       </div>
 
-    </div>
+    </div>,
+
+    document.body,
 
   );
 

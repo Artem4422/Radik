@@ -3,6 +3,7 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { Preloader } from "./Preloader";
 import { useHeaderHeight } from "@/hooks/useHeaderHeight";
+import { useSocialIconsWidth } from "@/hooks/useSocialIconsWidth";
 import { useReveal } from "@/hooks/useReveal";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { usePreloader } from "@/context/PreloaderContext";
@@ -30,6 +31,7 @@ export function PageLayout({
   const { setPageTitle } = useLanguage();
   const { isLoading, revealDelay } = usePreloader();
   useHeaderHeight();
+  useSocialIconsWidth();
   useReveal(pageId === "index" ? revealDelay : 100);
 
   const pageModifier = pageId === "index" ? "about" : pageId;
