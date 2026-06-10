@@ -7,6 +7,8 @@ body.page-partners {
   flex-direction: column;
   background: transparent !important;
   --layout-gap: 20px;
+  overflow-y: auto;
+  overscroll-behavior-y: none;
 }
 
 body.page-partners #root,
@@ -32,7 +34,7 @@ body.page-partners .page--partners {
   position: relative !important;
   overflow: hidden !important;
   isolation: isolate !important;
-  padding: calc(var(--header-h) + var(--layout-gap)) var(--side-pad) var(--layout-gap) !important;
+  padding: calc(var(--header-h) + var(--layout-gap)) var(--side-pad) calc(var(--layout-gap) + env(safe-area-inset-bottom, 0px)) !important;
   text-align: center;
   background: transparent !important;
   min-height: 0 !important;
@@ -195,7 +197,7 @@ body.page-partners .page--partners {
 @media (max-width: 768px) {
   .page--partners .partners-main {
     padding-top: calc(var(--header-h) + var(--layout-gap)) !important;
-    padding-bottom: var(--layout-gap) !important;
+    padding-bottom: calc(var(--layout-gap) + env(safe-area-inset-bottom, 0px)) !important;
   }
 
   .partners-content {
@@ -231,6 +233,7 @@ body.page-partners .page--partners {
 
   body.page-partners {
     overflow-y: auto !important;
+    overscroll-behavior-y: none !important;
   }
 }
 
