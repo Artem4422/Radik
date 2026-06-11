@@ -106,35 +106,25 @@ export function PdfViewerModal({ doc, onClose }: PdfViewerModalProps) {
 
 
   useEffect(() => {
-
     if (!doc) return;
 
-
+    const frozenH = window.innerHeight;
+    document.documentElement.style.setProperty("--pdf-height", `${frozenH}px`);
 
     const onKey = (e: KeyboardEvent) => {
-
       if (e.key === "Escape") onClose();
-
       if (e.key === "ArrowLeft") goPrev();
-
       if (e.key === "ArrowRight") goNext();
-
     };
 
-
-
     document.body.style.overflow = "hidden";
-
     window.addEventListener("keydown", onKey);
 
     return () => {
-
+      document.documentElement.style.removeProperty("--pdf-height");
       document.body.style.overflow = "";
-
       window.removeEventListener("keydown", onKey);
-
     };
-
   }, [doc, onClose, goPrev, goNext]);
 
 

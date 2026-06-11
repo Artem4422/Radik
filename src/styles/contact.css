@@ -3,8 +3,8 @@
 body.page-contact {
   --layout-gap: 20px;
   --contact-stack-gap: 20px;
+  min-height: 100vh;
   min-height: 100dvh;
-  min-height: 100svh;
   overflow-x: hidden;
   background: #000;
 }
@@ -13,8 +13,8 @@ body.page-contact #root,
 body.page-contact .page--contact {
   flex: 1 1 auto;
   width: 100%;
+  min-height: 100vh;
   min-height: 100dvh;
-  min-height: 100svh;
   display: flex;
   flex-direction: column;
 }
@@ -200,7 +200,7 @@ body.page-contact .page--contact {
 
 @media (max-width: 1366px) {
   body.page-contact {
+    min-height: 100vh;
     min-height: 100dvh;
-    min-height: 100svh;
   }
 }

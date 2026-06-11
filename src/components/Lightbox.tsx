@@ -14,6 +14,8 @@ export function Lightbox({ images, index, onClose, onChange }: LightboxProps) {
   const scrollYRef = useRef(0);
 
   useEffect(() => {
+    const frozenH = window.innerHeight;
+    document.documentElement.style.setProperty("--lightbox-height", `${frozenH}px`);
     scrollYRef.current = window.scrollY;
     document.body.classList.add("lightbox-open");
     document.body.style.top = `-${scrollYRef.current}px`;
@@ -32,6 +34,7 @@ export function Lightbox({ images, index, onClose, onChange }: LightboxProps) {
     window.addEventListener("keydown", onKey);
 
     return () => {
+      document.documentElement.style.removeProperty("--lightbox-height");
       document.body.classList.remove("lightbox-open");
       document.body.style.top = "";
       window.scrollTo(0, scrollYRef.current);

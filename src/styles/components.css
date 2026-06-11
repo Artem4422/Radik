@@ -925,7 +925,7 @@ body.lightbox-open .site-header {
   top: var(--lightbox-top);
   left: 50%;
   transform: translateX(-50%);
-  height: calc(100svh - var(--lightbox-top) - var(--lightbox-bottom));
+  height: calc(var(--lightbox-height, 100vh) - var(--lightbox-top) - var(--lightbox-bottom));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -938,7 +938,7 @@ body.lightbox-open .site-header {
 .lightbox-content img {
   max-width: 90vw;
   max-height: calc(
-    100svh - var(--lightbox-top) - var(--lightbox-bottom) - var(--lightbox-caption-h) -
+    var(--lightbox-height, 100vh) - var(--lightbox-top) - var(--lightbox-bottom) - var(--lightbox-caption-h) -
       var(--lightbox-gap)
   );
   width: auto;
@@ -1069,7 +1069,7 @@ body.lightbox-open .site-header {
   pointer-events: none;
   transition: opacity 0.35s ease;
   /* Фиксируем высоту для мобильных браузеров */
-  height: 100svh;
+  height: var(--pdf-height, 100svh);
 }
 
 .pdf-modal.active {
@@ -1091,7 +1091,7 @@ body.lightbox-open .site-header {
   z-index: 1;
   width: min(90vw, 860px);
   max-width: 100%;
-  max-height: calc(100svh - var(--header-h) - 24px);
+  max-height: calc(var(--pdf-height, 100svh) - var(--header-h) - 24px);
   height: 100%; /* Заставляем контейнер занимать всю доступную высоту */
   margin-top: 0;
   background: #111111;
@@ -1330,7 +1330,7 @@ body.lightbox-open .site-header {
   .pdf-modal-container {
     width: 100%;
     /* Используем svh вместо dvh/vh для стабильности при скрытии адресной строки */
-    max-height: calc(100svh - var(--header-h) - env(safe-area-inset-top, 0px) - 24px);
+    max-height: calc(var(--pdf-height, 100svh) - var(--header-h) - env(safe-area-inset-top, 0px) - 24px);
     height: 100%;
     border-radius: 10px;
   }
@@ -1365,7 +1365,7 @@ body.lightbox-open .site-header {
 
 @media (max-width: 480px) {
   .pdf-modal-container {
-    max-height: calc(100svh - var(--header-h) - env(safe-area-inset-top, 0px) - 24px);
+    max-height: calc(var(--pdf-height, 100svh) - var(--header-h) - env(safe-area-inset-top, 0px) - 24px);
   }
 
   .pdf-action-btn {

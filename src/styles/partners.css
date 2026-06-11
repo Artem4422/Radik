@@ -239,7 +239,8 @@ body.page-partners .page--partners {
   /* Фикс для футера в Яндексе: заставляем main растягиваться */
   body.page-partners #root,
   body.page-partners .page--partners {
-    min-height: 100svh !important;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
   }
 }
 
