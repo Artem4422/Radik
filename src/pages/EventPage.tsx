@@ -5,7 +5,6 @@ import { FooterStack } from "@/components/Footer";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const events = [
-  { city: "Геленджик", date: "19.07.26" },
   { city: "Новороссийск", date: "23.07.26", long: true },
   { city: "Анапа", date: "16.08.26" },
   { city: "Ростов-на-Дону", date: "10.26", long: true },
