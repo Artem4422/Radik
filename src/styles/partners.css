@@ -235,6 +235,12 @@ body.page-partners .page--partners {
     overflow-y: auto !important;
     overscroll-behavior-y: none !important;
   }
+  
+  /* Фикс для футера в Яндексе: заставляем main растягиваться */
+  body.page-partners #root,
+  body.page-partners .page--partners {
+    min-height: 100svh !important;
+  }
 }
 
 @media (max-width: 360px) {

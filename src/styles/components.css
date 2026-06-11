@@ -803,7 +803,8 @@ body.loading-active {
   left: 0;
   width: 100%;
   height: 100vh;
-  height: 100dvh;
+  /* fallback for browsers that don't support svh */
+  height: 100svh;
   background: #000;
   display: flex;
   align-items: center;
@@ -831,7 +832,7 @@ body.loading-active {
   filter: blur(20px);
   transform: scale(1.3);
   position: relative;
-  top: -6vh;
+  /* Убрали top: -6vh, чтобы лого было ровно по центру */
 }
 
 .loading-active .preloader-logo {
@@ -1067,6 +1068,8 @@ body.lightbox-open .site-header {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.35s ease;
+  /* Фиксируем высоту для мобильных браузеров */
+  height: 100svh;
 }
 
 .pdf-modal.active {
@@ -1089,6 +1092,7 @@ body.lightbox-open .site-header {
   width: min(90vw, 860px);
   max-width: 100%;
   max-height: calc(100svh - var(--header-h) - 24px);
+  height: 100%; /* Заставляем контейнер занимать всю доступную высоту */
   margin-top: 0;
   background: #111111;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1319,13 +1323,15 @@ body.lightbox-open .site-header {
     padding:
       calc(env(safe-area-inset-top, 0px) + var(--header-h) + 4px)
       max(8px, env(safe-area-inset-right, 0px))
-      calc(env(safe-area-inset-bottom, 0px) + 72px)
+      calc(env(safe-area-inset-bottom, 0px) + 12px)
       max(8px, env(safe-area-inset-left, 0px));
   }
 
   .pdf-modal-container {
     width: 100%;
-    max-height: calc(100svh - var(--header-h) - env(safe-area-inset-top, 0px) - 88px);
+    /* Используем svh вместо dvh/vh для стабильности при скрытии адресной строки */
+    max-height: calc(100svh - var(--header-h) - env(safe-area-inset-top, 0px) - 24px);
+    height: 100%;
     border-radius: 10px;
   }
 
@@ -1359,7 +1365,7 @@ body.lightbox-open .site-header {
 
 @media (max-width: 480px) {
   .pdf-modal-container {
-    max-height: calc(100svh - var(--header-h) - env(safe-area-inset-top, 0px) - 80px);
+    max-height: calc(100svh - var(--header-h) - env(safe-area-inset-top, 0px) - 24px);
   }
 
   .pdf-action-btn {
